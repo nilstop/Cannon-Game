@@ -1,0 +1,50 @@
+{
+	"categories": [
+		{
+			"uuid": "3654177f-fc0d-47e1-a85d-29c19a7de612",
+			"title": "Task",
+			"color": "0078d4"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "eaad0085-0a0e-4724-9b7c-534ae576d109",
+			"title": "Todo",
+			"tasks": []
+		},
+		{
+			"uuid": "6329aadf-395b-49ed-8e55-3581f0e47306",
+			"title": "Doing",
+			"tasks": [
+				"24982e62-906c-42fa-963b-32a6afd10326"
+			]
+		},
+		{
+			"uuid": "621848a7-aad5-4a64-a247-e20f6c967760",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "24982e62-906c-42fa-963b-32a6afd10326",
+			"title": "Cannon shoots balls",
+			"description": "",
+			"category": "3654177f-fc0d-47e1-a85d-29c19a7de612",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"eaad0085-0a0e-4724-9b7c-534ae576d109"
+			],
+			[
+				"6329aadf-395b-49ed-8e55-3581f0e47306"
+			],
+			[
+				"621848a7-aad5-4a64-a247-e20f6c967760"
+			]
+		]
+	}
+}

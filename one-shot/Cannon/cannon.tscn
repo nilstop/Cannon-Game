@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://l585afa6qeco"]
+
+[ext_resource type="Script" uid="uid://b0shs1q50vauh" path="res://Cannon/cannon.gd" id="1_2kyob"]
+[ext_resource type="PackedScene" uid="uid://wsbwn0ra0tci" path="res://Cannonball/cannonball.tscn" id="2_rc2eq"]
+[ext_resource type="Texture2D" uid="uid://disarjljaca8" path="res://Cannon/CannonSpritesheet.png" id="3_2kyob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23j6s"]
+size = Vector2(50, 50)
+
+[node name="Cannon" type="Area2D"]
+script = ExtResource("1_2kyob")
+cannonball = ExtResource("2_rc2eq")
+start_y = 580
+speed = 300.0
+turning_speed = 200.0
+turning_range = 160.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_23j6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("3_2kyob")
+region_enabled = true
+region_rect = Rect2(0, 0, 22, 22)
