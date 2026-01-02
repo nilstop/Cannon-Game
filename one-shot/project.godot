@@ -57,6 +57,14 @@ right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Boat"
+2d_physics/layer_2="Border"
+2d_physics/layer_3="Cannonball"
+2d_physics/layer_4="Cannon"
+2d_physics/layer_5="Cannonball Borders"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

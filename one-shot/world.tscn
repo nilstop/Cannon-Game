@@ -1,8 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://q416dcvq6rhf"]
+[gd_scene load_steps=7 format=3 uid="uid://q416dcvq6rhf"]
 
 [ext_resource type="PackedScene" uid="uid://l585afa6qeco" path="res://Cannon/cannon.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://dv00dfrf3n8q4" path="res://boat_spawner.gd" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://5swe6wfpmygv" path="res://Boat/boat.tscn" id="3_aqk2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(23, 670)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
+size = Vector2(50, 797.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
+size = Vector2(1336, 78)
 
 [node name="World" type="Node2D"]
 
 [node name="Cannon" parent="." instance=ExtResource("1_f3sb7")]
 position = Vector2(588, 568)
+
+[node name="BoatSpawner" type="Node2D" parent="."]
+script = ExtResource("2_tlwt5")
+boat = ExtResource("3_aqk2v")
+
+[node name="Borders" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-1.5, 325)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1152, 323)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="Cannonball Borders" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannonball Borders"]
+position = Vector2(-110, 275.75)
+shape = SubResource("RectangleShape2D_aqk2v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cannonball Borders"]
+position = Vector2(1249, 276)
+shape = SubResource("RectangleShape2D_aqk2v")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Cannonball Borders"]
+position = Vector2(581, -94)
+shape = SubResource("RectangleShape2D_036b0")

@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://5swe6wfpmygv"]
+
+[ext_resource type="Texture2D" uid="uid://rj5gbygm0k5q" path="res://Boat/Boat.png" id="1_8yg56"]
+[ext_resource type="Script" uid="uid://bhml0ylpgk5fl" path="res://Boat/boat.gd" id="1_yfifx"]
+[ext_resource type="Texture2D" uid="uid://cc3ooj0wldh0k" path="res://Boat/particle.png" id="3_ngpvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfifx"]
+size = Vector2(135, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reikl"]
+size = Vector2(136, 76)
+
+[sub_resource type="Gradient" id="Gradient_wob0g"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_57yac"]
+gradient = SubResource("Gradient_wob0g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oew0k"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 498.91
+initial_velocity_max = 556.44
+gravity = Vector3(0, 0, 0)
+damping_min = 1000.00006
+damping_max = 1000.00006
+scale_min = 0.02
+scale_max = 0.19999999
+color_ramp = SubResource("GradientTexture1D_57yac")
+
+[sub_resource type="Animation" id="Animation_ngpvg"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(57, 0, 57, 22), Rect2(0, 0, 57, 22)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(2.3784132, 0.4352754, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(5, 2), Vector2(7, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_reikl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 57, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wob0g"]
+_data = {
+&"RESET": SubResource("Animation_reikl"),
+&"hit": SubResource("Animation_ngpvg")
+}
+
+[node name="Boat" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_yfifx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yfifx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_8yg56")
+region_enabled = true
+region_rect = Rect2(0, 0, 57, 22)
+
+[node name="CannonBallArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CannonBallArea"]
+shape = SubResource("RectangleShape2D_reikl")
+one_way_collision_margin = 0.0
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("3_ngpvg")
+lifetime = 0.8
+one_shot = true
+preprocess = 0.05
+speed_scale = 1.5
+explosiveness = 1.0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_oew0k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wob0g")
+}
+speed_scale = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="CannonBallArea" to="." method="_on_cannon_ball_area_area_entered"]

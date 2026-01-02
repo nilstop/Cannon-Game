@@ -8,6 +8,7 @@
 size = Vector2(50, 50)
 
 [node name="Cannon" type="Area2D"]
+collision_layer = 8
 script = ExtResource("1_2kyob")
 cannonball = ExtResource("2_rc2eq")
 start_y = 580

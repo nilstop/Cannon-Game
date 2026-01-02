@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		clamp_rotation()
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("launch"):# and Global.cannon_ready:
+	if Input.is_action_just_pressed("launch") and Global.cannon_ready:
 		inst(cannonball)
 		Global.cannon_ready = false
 	if _event is InputEventMouseMotion:

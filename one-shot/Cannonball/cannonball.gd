@@ -8,3 +8,7 @@ func _ready() -> void:
  
 func _physics_process(delta: float) -> void:
 	global_position += Vector2.UP.rotated(rotation) * speed * delta
+
+
+func _on_border_area_area_entered(area: Area2D) -> void:
+	Global.cannon_ready = true
