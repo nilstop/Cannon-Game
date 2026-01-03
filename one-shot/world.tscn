@@ -22,7 +22,7 @@ position = Vector2(588, 568)
 script = ExtResource("2_tlwt5")
 boat = ExtResource("3_aqk2v")
 
-[node name="Borders" type="Area2D" parent="."]
+[node name="Borders" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 

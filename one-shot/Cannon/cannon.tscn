@@ -7,11 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23j6s"]
 size = Vector2(50, 50)
 
-[node name="Cannon" type="Area2D"]
+[node name="Cannon" type="CharacterBody2D"]
 collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_2kyob")
 cannonball = ExtResource("2_rc2eq")
-start_y = 580
 speed = 300.0
 turning_speed = 200.0
 turning_range = 160.0
